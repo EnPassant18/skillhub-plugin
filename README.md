@@ -6,7 +6,7 @@ Install the SkillHub MCP plugin from this public marketplace. It lets Codex sear
 
 - Codex CLI or Codex in the ChatGPT desktop app with plugin support
 - Node.js 22 or newer available as `node`
-- A reachable SkillHub registry; set `SKILLHUB_API_URL` to its HTTPS origin, or run the registry locally at the default `http://localhost:3000`
+- A reachable SkillHub registry. The default is `https://skillhub-web-kappa.vercel.app/`; set `SKILLHUB_API_URL` to use another origin.
 
 The server is bundled in `plugins/skillhub/dist/index.js`. You do **not** need npm dependencies or the private SkillHub source repository to install this plugin.
 
@@ -26,20 +26,20 @@ The local MCP server reads these environment variables from the process that lau
 
 | Variable | Purpose |
 | --- | --- |
-| `SKILLHUB_API_URL` | Registry origin. Defaults to `http://localhost:3000`. Remote origins must use HTTPS. |
+| `SKILLHUB_API_URL` | Optional registry origin override. Defaults to `https://skillhub-web-kappa.vercel.app/`. Remote origins must use HTTPS. |
 | `SKILLHUB_API_TOKEN` | Optional contributor or admin bearer token for reviews and draft submissions. Public search and loads can work without a token. |
 | `SKILLHUB_CACHE_DIR` | Optional local cache directory. Defaults to `~/.cache/skillhub`. |
 
 For the CLI, set the registry URL before starting Codex:
 
 ```sh
-export SKILLHUB_API_URL="https://your-skillhub-registry.example"
+export SKILLHUB_API_URL="http://localhost:3000"
 codex
 ```
 
 Supply `SKILLHUB_API_TOKEN` through your host's environment or secret settings if you need write operations. Do not commit tokens to this repository or put them in the plugin manifest. A desktop app launched independently of your terminal may not inherit terminal environment variables; configure its launch environment and restart the app.
 
-This release does not include a hosted public registry URL or user sign-in. If you do not have a hosted registry, run your own SkillHub backend and point `SKILLHUB_API_URL` to it. The development backend uses single-user contributor/admin tokens and is not a public multi-user account service.
+The hosted registry is the default. You can run your own SkillHub backend and point `SKILLHUB_API_URL` to it. The development backend uses single-user contributor/admin tokens and is not a public multi-user account service.
 
 ## Use
 

@@ -36690,7 +36690,7 @@ var SkillHubClient = class {
   fetcher;
   constructor(options = {}) {
     this.baseUrl = new URL(
-      options.baseUrl ?? process.env.SKILLHUB_API_URL ?? "http://localhost:3000"
+      options.baseUrl ?? process.env.SKILLHUB_API_URL ?? "https://skillhub-web-kappa.vercel.app/"
     );
     if (!["http:", "https:"].includes(this.baseUrl.protocol) || this.baseUrl.username || this.baseUrl.password || this.baseUrl.search || this.baseUrl.hash) {
       throw new SkillHubApiError(
