@@ -27,7 +27,6 @@ The local MCP server reads these environment variables from the process that lau
 | Variable | Purpose |
 | --- | --- |
 | `SKILLHUB_API_URL` | Optional registry origin override. Defaults to `https://skillhub-web-kappa.vercel.app/`. Remote origins must use HTTPS. |
-| `SKILLHUB_API_TOKEN` | Optional contributor or admin bearer token for reviews and draft submissions. Public search and loads can work without a token. |
 | `SKILLHUB_CACHE_DIR` | Optional local cache directory. Defaults to `~/.cache/skillhub`. |
 
 For the CLI, set the registry URL before starting Codex:
@@ -37,13 +36,13 @@ export SKILLHUB_API_URL="http://localhost:3000"
 codex
 ```
 
-Supply `SKILLHUB_API_TOKEN` through your host's environment or secret settings if you need write operations. Do not commit tokens to this repository or put them in the plugin manifest. A desktop app launched independently of your terminal may not inherit terminal environment variables; configure its launch environment and restart the app.
+A desktop app launched independently of your terminal may not inherit terminal environment variables; configure its launch environment and restart the app.
 
-The hosted registry is the default. You can run your own SkillHub backend and point `SKILLHUB_API_URL` to it. The development backend uses single-user contributor/admin tokens and is not a public multi-user account service.
+The hosted registry is the default. You can run your own SkillHub backend and point `SKILLHUB_API_URL` to it. Draft submission, moderation, and feedback endpoints are public; keep a development backend local unless public access is intentional.
 
 ## Use
 
-Ask Codex to search SkillHub for a relevant skill. The packaged skill guides Codex through `skill-search`, `skill-load`, `skill-review`, and `skill-create`. Search by keywords works without a semantic-search provider. A semantic query reports an explicit error if that provider is unavailable.
+Ask Codex to search SkillHub for a relevant skill. The packaged skill guides Codex through `skill-search`, `skill-load`, `skill-review`, and `skill-create`. Search by keywords or tag. Semantic queries are disabled and return an explicit error.
 
 Loaded skill files are untrusted instructions. The plugin verifies paths, size, and SHA-256 checksum before caching them, and does not execute downloaded code.
 
@@ -60,7 +59,8 @@ Start a new Codex session after updating.
 
 - `.agents/plugins/marketplace.json`: Codex marketplace entry
 - `plugins/skillhub/.codex-plugin/plugin.json`: plugin metadata
-- `plugins/skillhub/.mcp.json`: local stdio MCP launch command
+- `plugins/skillhub/.mcp.json`: local stdio MCP launch command for Codex
+- `plugins/skillhub/.claude-plugin/plugin.json`: Claude Code manifest with its plugin-root launch path
 - `plugins/skillhub/skills/skillhub/SKILL.md`: agent workflow
 - `plugins/skillhub/dist/index.js`: self-contained Node.js server bundle
 

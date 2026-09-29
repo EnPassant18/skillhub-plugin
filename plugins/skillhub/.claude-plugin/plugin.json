@@ -1,0 +1,12 @@
+{
+  "name": "skillhub",
+  "version": "0.1.0",
+  "description": "Search, load, review, and draft versioned skills from a SkillHub registry.",
+  "author": { "name": "SkillHub contributors" },
+  "mcpServers": {
+    "skillhub": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/dist/index.js"]
+    }
+  }
+}
