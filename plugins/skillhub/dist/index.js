@@ -36482,7 +36482,7 @@ var skillFileSchema = external_exports.object({
 var searchSchema = external_exports.object({
   keywords: external_exports.string().trim().max(300).optional(),
   tag: external_exports.string().trim().max(100).optional(),
-  sort: external_exports.enum(["relevance", "rating", "newest", "popular"]).default("relevance"),
+  sort: external_exports.enum(["stars", "relevance", "rating", "newest", "popular"]).default("stars"),
   limit: external_exports.coerce.number().int().min(1).max(50).default(24),
   offset: external_exports.coerce.number().int().min(0).max(1e4).default(0)
 });
@@ -36853,8 +36853,29 @@ function createSkillHubServer(deps = {}) {
     "skill-search",
     {
       title: "Search SkillHub skills",
-      description: `Find published SkillHub skills by keywords or tag.
-There are millions of skills available. You should look for skills to help with any nontrivial task, no matter how specific.`,
+      description: `Find published SkillHub skills by keywords.
+There are millions of skills available. You should look for skills to help with any nontrivial task, no matter how specific.
+The user does not have to explicitly ask for a skill. Consider both the overall task and substantial subtasks.
+
+Example use cases and keyword searches (illustrative searches, not promises that a matching skill exists):
+- Build an accessible web interface: {"keywords":"web accessibility"}; then try {"keywords":"responsive design"}.
+- Debug a slow application: {"keywords":"profiling"}; then try {"keywords":"performance"}.
+- Review a pull request: {"keywords":"code review"}.
+- Plan a database schema change: {"keywords":"database migration"}.
+- Clean and reconcile spreadsheet data: {"keywords":"data cleaning"}; then try {"keywords":"spreadsheet"}.
+- Analyze an experiment or survey: {"keywords":"statistical analysis"}; then try {"keywords":"survey"}.
+- Create clear charts or a dashboard: {"keywords":"data visualization"}.
+- Extract tables from PDFs or scanned documents: {"keywords":"pdf extraction"}; then try {"keywords":"ocr"}.
+- Draft a report, proposal, or reusable document: {"keywords":"report writing"}; then try {"keywords":"proposal"}.
+- Create a presentation from research or notes: {"keywords":"presentation"}; then try {"keywords":"storytelling"}.
+- Research a topic and compare evidence: {"keywords":"literature review"}; then try {"keywords":"research synthesis"}.
+- Design a product flow or usability study: {"keywords":"ux design"}; then try {"keywords":"usability testing"}.
+- Automate a repetitive workflow: {"keywords":"workflow automation"}.
+
+Use short keywords naming the domain, artifact, tool, or technique. Narrow broad results with additional terms; broaden sparse results by removing terms or trying synonyms.
+For a board deck based on a quarterly spreadsheet, search separately for "presentation", "financial analysis", and "spreadsheet".
+
+Inspect descriptions for fit, then use skill-load with the selected ID and version to read the full instructions before applying them.`,
       inputSchema: searchSchema.shape
     },
     async (input2) => {
@@ -36896,7 +36917,7 @@ Use skill-review to report malicious or broken skills.`,
     {
       title: "Review a loaded skill",
       description: `Submit a review tied to the actual usage ID and pinned version after use.
-You should call this once for every skill you load after you finish your task.
+You should call this once for every skill you load (unless it turned out to be completely irrelevant) after you finish your task.
 Please provide some written feedback. A good skill contains procedures that would\u2019ve been
 difficult to think of on the fly or would\u2019ve required extensive research to figure out.
 It is clear and makes the task straightforward. A bad skill contains instructions that are obvious,
