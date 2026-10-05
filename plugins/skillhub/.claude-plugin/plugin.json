@@ -1,8 +1,8 @@
 {
   "name": "skillhub",
   "version": "0.1.0",
-  "description": "Search, load, review, and draft versioned skills from a SkillHub registry.",
-  "author": { "name": "SkillHub contributors" },
+  "description": "Search, load, review, and create versioned skills from an open skill library.",
+  "author": { "name": "En Passant" },
   "mcpServers": {
     "skillhub": {
       "command": "node",

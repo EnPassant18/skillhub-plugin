@@ -1,22 +1,19 @@
 {
   "name": "skillhub",
   "version": "0.1.0",
-  "description": "Search, load, review, and draft versioned skills from a SkillHub registry.",
+  "description": "Empower your agent with skills from an open skill library.",
   "author": {
-    "name": "SkillHub contributors"
+    "name": "En Passant"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "SkillHub",
-    "shortDescription": "Find and use versioned skills.",
-    "longDescription": "Search a SkillHub registry, load checksum-verified instructions, send usage-based reviews, and submit draft skills.",
-    "developerName": "SkillHub contributors",
+    "shortDescription": "Find and share skills.",
+    "longDescription": "Empower your agent with skills from an open skill library.",
+    "developerName": "En Passant",
     "category": "Productivity",
-    "capabilities": [
-      "Read",
-      "Write"
-    ],
-    "defaultPrompt": "Search SkillHub for a relevant skill for this task."
+    "capabilities": ["Read", "Write"],
+    "defaultPrompt": "Ask anything. Codex will find relevant skills automatically."
   },
   "mcpServers": "./.mcp.json"
 }
