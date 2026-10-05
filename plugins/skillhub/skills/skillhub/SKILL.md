@@ -46,8 +46,19 @@ After completing substantial work in a specialized domain that existing skills d
 
 Use `skill-update` to edit an existing public skill. Load it with `skill-load`, then:
 
-1. Supply the selected slug as `id`, complete replacement instructions, and metadata fields. Load does not return registry metadata; inspect `GET /api/skills/:slug` when you need the existing values before editing, and preserve unchanged values. Metadata fields are top-level update arguments, not a nested object.
-2. Include all helper files to retain, excluding `SKILL.md`, plus a public `changeSummary`. Updates replace the complete content; they are not partial patches. The backend applies the update to the latest published skill while holding its row lock; no edit-base arguments are required.
-3. On `EDIT_CONFLICT`, reload the skill and reconcile your changes before retrying. Do not blindly overwrite concurrent edits.
+1. Supply the selected slug as `id` and only the metadata fields you want to change. The name is fixed; all other fields are optional and omitted fields retain their current values. An optional public `changeSummary` defaults to "Update skill". Metadata fields are top-level arguments. Explicit empty arrays clear tags/compatibility, and `sourceUrl: null` clears the source URL.
+2. Supply `patch` to edit instructions or helper files using Codex's `apply_patch` format. Paths are relative to the skill bundle, including `SKILL.md` for instructions. Use `*** Update File` with `@@` context hunks for targeted edits, `*** Add File` for new helpers, `*** Delete File` to remove helpers, and `*** Update File` followed by `*** Move to` for renames. `SKILL.md` cannot be deleted or moved. Do not supply replacement `instructions` or `files` arguments, and do not edit the immutable local cache.
+3. The backend merges metadata and applies every file operation to the latest bundle atomically under its row lock. Unmatched context returns `EDIT_CONFLICT`; reload and reconcile your changes before retrying. No edit-base arguments are required. Empty or unchanged updates create no version.
+
+For example, pass a patch string containing:
+
+```text
+*** Begin Patch
+*** Update File: SKILL.md
+@@
+-Read the input.
++Inspect the input and record the result.
+*** End Patch
+```
 
 Updates publish immediately; previous content remains preserved in the registry's history. Upload only deliberately written generalized material, and preserve existing authorization boundaries for all contributions.
