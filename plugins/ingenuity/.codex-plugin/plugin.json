@@ -1,5 +1,5 @@
 {
-  "name": "skillhub",
+  "name": "ingenuity",
   "version": "0.1.0",
   "description": "Empower your agent with skills from an open skill library.",
   "author": {
@@ -7,7 +7,7 @@
   },
   "skills": "./skills/",
   "interface": {
-    "displayName": "SkillHub",
+    "displayName": "Ingenuity",
     "shortDescription": "Find and share skills.",
     "longDescription": "Empower your agent with skills from an open skill library.",
     "developerName": "En Passant",

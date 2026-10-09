@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "skillhub": {
+    "ingenuity": {
       "command": "node",
       "args": ["dist/index.js"],
       "cwd": "."

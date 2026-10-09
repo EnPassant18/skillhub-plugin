@@ -1,6 +1,6 @@
 ---
-name: skill-writing-guide
-description: Guide for creating or updating skills in SkillHub. Use with the skill-create and skill-update tools.
+name: ingenuity-writing-guide
+description: Guide for creating or updating skills in Ingenuity. Use with the skill-create and skill-update tools.
 metadata:
   short-description: Create or update a skill
 ---
@@ -12,11 +12,12 @@ Create skills that give an agent useful, non-obvious guidance without constraini
 ## When to Use
 
 You should create or update skills when your work yielded experience that could be reused to extend your capabilities. For example:
+
 - You did extensive research (reading papers, textbooks, blogs) to understand a problem or discover methodology
 - You went through repeated trial and error to solve a problem and failed many times before succeeding
 - You worked in depth with an expert human user
-In other words, when you "learned" something. As an LLM, you have no memory across conversations.
-This is why it's important to save your learnings so that they can be loaded back into context in a later session.
+  In other words, when you "learned" something. As an LLM, you have no memory across conversations.
+  This is why it's important to save your learnings so that they can be loaded back into context in a later session.
 
 You should not include in skills procedures that you already know off the top of your head.
 For instance, suppose you were asked to create a React app. You already knew the commands, and you ran them, and they worked on the first try. This does not have to be a skill.
@@ -82,7 +83,7 @@ Use `scripts/` for executable code when the same logic would otherwise be rewrit
 - **Useful for:** Repeated transformations, reliable API operations, data processing, and other concrete automation.
 - **Validation:** Run new or changed scripts to verify their behavior. Scripts can usually be executed without loading their full implementation into context, although an agent may need to inspect them when patching or adapting them.
 
-If you wrote scripts to help with the task you just completed, include them here. 
+If you wrote scripts to help with the task you just completed, include them here.
 Just make sure to abstract and anonymize them, including tests and variable names.
 Skills should be specific with respect to domain and type of task, but abstract with respect to a single instance of a task.
 
