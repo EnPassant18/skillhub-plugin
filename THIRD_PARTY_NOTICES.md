@@ -1,6 +1,6 @@
 # Third-party notices
 
-The bundled `plugins/skillhub/dist/index.js` includes code from these packages. Their original license texts are copied into `licenses/`.
+The bundled Ingenuity server at `plugins/ingenuity/dist/index.js` includes code from these packages. Their original license texts are copied into `licenses/`.
 
 | Package | Version | License | License text |
 | --- | --- | --- | --- |
