@@ -1,14 +1,14 @@
 {
-  "name": "skillhub-public",
+  "name": "ingenuity-public",
   "interface": {
-    "displayName": "SkillHub"
+    "displayName": "Ingenuity"
   },
   "plugins": [
     {
-      "name": "skillhub",
+      "name": "ingenuity",
       "source": {
         "source": "local",
-        "path": "./plugins/skillhub"
+        "path": "./plugins/ingenuity"
       },
       "policy": {
         "installation": "AVAILABLE",
